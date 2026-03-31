@@ -1,0 +1,18 @@
+class Solution:
+    def maxArea(self, heights: List[int]) -> int:
+        left = 0
+        right = len(heights) -1 
+        max_vol = 0
+        while(left !=right):
+            current_vol = (right - left) * min(heights[left], heights[right])
+            if current_vol > max_vol:
+                max_vol = current_vol
+
+            if heights[left]>heights[right]:
+                right = right -1
+            else:
+                left = left + 1
+
+        return max_vol 
+
+        # The idea is that the any pair that is paired with the current shorter side will not be able generate a larger vol so it is not worth checking
